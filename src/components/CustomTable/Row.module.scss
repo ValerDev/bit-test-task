@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+
+.row {
+    display: flex;
+    transition: .2s;
+    border-radius: 8px;
+    &:hover {
+        background-color: $dark-blue;
+    }
+
+    p {
+        width: 300px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        word-break: break-word;
+    }
+
+    .actions {
+        width: 300px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        img {
+            width: 18px;
+            height: 18px;
+            transition: .2s;
+            cursor: pointer;
+
+            &:hover {
+                opacity: .7;
+            }
+        }
+    }
+}

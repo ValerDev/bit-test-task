@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+
+.pages {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    .active {
+        background-color: $blue;
+    }
+
+    button {
+        border: none;
+        background: transparent;
+        outline: none;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 34px;
+        height: 34px;
+        line-height: 0;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: $blue;
+
+        }
+    }
+}

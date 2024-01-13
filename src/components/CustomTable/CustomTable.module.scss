@@ -1,0 +1,24 @@
+@import '../../variables.scss';
+
+.customTable{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 68px);
+    margin: 0 auto;
+    .searchBlock{
+        position: relative;
+        img{
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translate(-50%, -50%);
+        }
+        .search{
+            width: 100%;
+            padding: 14px 42px;
+            border: 1px solid $dark-blue;
+            background-color: $primary;
+            border-radius: 8px;
+        }
+    }
+}
