@@ -20,17 +20,17 @@ export const Row: React.FC<Props> = ({
 
     return (
         <>
-        <div className={s.row}>
-            <p>{email}</p>
-            <p>{name}</p>
-            <p>{role}</p>
-            <p>{subscribe}</p>
-            <p>{token} TKN</p>
-            <div className={s.actions}>
-                <img src={edit} alt="edit" />
-                <img src={trash} alt="trash" />
+            <div className={s.row}>
+                <p>{email}</p>
+                <p>{name}</p>
+                <p>{role}</p>
+                <p>{subscribe}</p>
+                <p>{token} TKN</p>
+                <div className={s.actions}>
+                    <img src={edit} alt="edit" />
+                    <img src={trash} alt="trash" />
+                </div>
             </div>
-        </div>
             <div className="line" />
         </>
     );
