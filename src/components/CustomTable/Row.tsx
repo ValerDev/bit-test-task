@@ -2,6 +2,8 @@ import React from "react";
 import s from './Row.module.scss';
 import edit from '../../assets/icons/edit.png'
 import trash from '../../assets/icons/trash.png'
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+import { usersSlice } from "../../store/users/slice";
 
 interface Props {
     email: string;
@@ -17,10 +19,18 @@ export const Row: React.FC<Props> = ({
     role,
     subscribe,
     token }) => {
+    const dispatch = useAppDispatch();
+    const { userInformationBar } = useAppSelector(state => state.usersSlice);
 
+    const selectUser = () => {
+        dispatch(usersSlice.actions.setUserInformationBar(true));
+        dispatch(usersSlice.actions.setSelectedUser({
+            email,
+        }))
+    }
     return (
         <>
-            <div className={s.row}>
+            <div className={s.row} onClick={selectUser}>
                 <p>{email}</p>
                 <p>{name}</p>
                 <p>{role}</p>

@@ -4,6 +4,10 @@
     display: flex;
     transition: .2s;
     border-radius: 8px;
+    min-width: 520px;
+    @media (max-width: $layout-phone) {
+        padding-left: 10px;
+    }
     &:hover {
         background-color: $dark-blue;
     }
@@ -11,11 +15,15 @@
     p {
         width: 300px;
         height: 64px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
         word-break: break-word;
+        @media (max-width: $layout-tablet) {
+            font-size: 12px;
+        }
     }
 
     .actions {

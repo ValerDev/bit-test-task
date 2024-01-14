@@ -13,10 +13,10 @@ export const CustomTable: React.FC = () => {
     const dispatch = useAppDispatch();
     const { users, isLoading } = useAppSelector(state => state.usersSlice);
     const [page, setPage] = useState<number>(1);
-    const limit: number = 8;
+    const limit: number = 10;
 
     const searchUsers = async (value: string) => {
-        if(!value) return dispatch(getUsersThunk({ limit: 8, skip: page * limit }));
+        if (!value) return dispatch(getUsersThunk({ limit: 8, skip: page * limit }));
         await dispatch(searchUsersThunk(value));
     }
 
@@ -24,7 +24,7 @@ export const CustomTable: React.FC = () => {
 
     useEffect(() => {
         const init = async () => {
-            await dispatch(getUsersThunk({ limit: 8, skip: (page - 1) * limit }));
+            await dispatch(getUsersThunk({ limit: limit, skip: (page - 1) * limit }));
         }
         init();
     }, [page]);
@@ -32,24 +32,32 @@ export const CustomTable: React.FC = () => {
 
     return (
         <div className={s.customTable}>
+            <h3 className={s.title}>Моя организация</h3>
+            <div className="line" />
+            <h3 className={s.title}>Пользователи</h3>
             <div className={s.searchBlock}>
                 <img src={search} alt="search" />
                 <input {...input} className={s.search} placeholder="Поиск" />
             </div>
-            <TableHeader />
-            {isLoading ?
-                <Loader /> :
-                users.length ?
-                    users.map((user: any) => <Row
-                        key={user.id}
-                        email={user.email}
-                        name={user.firstName}
-                        role={'USER'}
-                        subscribe={'Free'}
-                        token={`${user.age * 1000}`}
-                    />) :
-                    <span style={{ margin: '0 auto' }}>No data</span>}
-                    <Pages setPage={setPage} page={page} limit={limit}/>
+            <div className={s.main}>
+                <TableHeader />
+                {isLoading ?
+                    <Loader /> :
+                    users.length ?
+                        <div className={s.tableContent}>
+                            {
+                                users.map((user: any) => <Row
+                                    key={user.id}
+                                    email={user.email}
+                                    name={user.firstName}
+                                    role={'USER'}
+                                    subscribe={'Free'}
+                                    token={`${user.age * 1000}`}
+                                />)}
+                        </div> :
+                        <span style={{ margin: '30px auto' }}>No data</span>}
+            </div>
+            <Pages setPage={setPage} page={page} limit={limit} />
         </div>
     );
 };

@@ -3,8 +3,19 @@
 .customTable{
     display: flex;
     flex-direction: column;
-    width: calc(100% - 68px);
+    width: 100%;
+    background-color: $primary;
     margin: 0 auto;
+    border-radius: 18px;
+    margin-top: 34px;
+    padding: 0px 34px 34px ;
+    .title{
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 29px;
+        margin: 24px 34px;
+    }
     .searchBlock{
         position: relative;
         img{
@@ -19,6 +30,17 @@
             border: 1px solid $dark-blue;
             background-color: $primary;
             border-radius: 8px;
+        }
+        @media (max-width: $layout-phone) {
+            max-width: 520px;
+        }
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        @media (max-width: $layout-phone) {
+            max-width: 520px;
+            overflow-x: auto;
         }
     }
 }

@@ -1,0 +1,63 @@
+@import '../../variables.scss';
+
+.userInformationBar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: .2s;
+
+    .userInfoAndActions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .email {
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 26px;
+        }
+        .close{
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    .chart {
+        margin-top: 20px;
+    }
+
+    .layout {
+        width: calc(100% - 470px);
+        background-color: #00000079;
+        height: 100%;
+
+        @media (max-width: $layout-phone) {
+            display: none;
+        }
+    }
+
+    .bar {
+        width: 470px;
+        height: 100%;
+        background-color: $primary;
+        padding: 56px 20px;
+
+        @media (max-width: $layout-tablet) {
+            padding: 56px 40px 56px 20px;
+        }
+
+        @media (max-width: $layout-phone) {
+            width: 100%;
+        }
+    }
+
+
+}
+
+.userInformationBar.hidden {
+    opacity: 0;
+    z-index: -1;
+}
