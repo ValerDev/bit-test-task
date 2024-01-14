@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Pages.module.scss';
 import { useAppSelector } from "../../hooks/storeHooks";
-import { usersSlice } from "../../store/users/slice";
 
 interface Props {
     limit: number,
@@ -10,15 +9,23 @@ interface Props {
 }
 export const Pages: React.FC<Props> = ({ page, setPage, limit }) => {
     const { total } = useAppSelector(state => state.usersSlice);
-    console.log(page);
-
+    const pagesCount = Math.floor(total / limit);
     return (
         <div className={s.pages}>
-            <button onClick={() => setPage(page - 1)} disabled={page === 0} style={{ opacity: page === 0 ? '.3' : '1' }}>←</button>
-            {[...Array(Math.floor(total / limit) - page < 5 ? Math.floor(total / limit) - page : 4)].map((e, i) => <button onClick={() => {setPage(page + 1)}}>{page + i+1}</button>)}
-            <button style={{ pointerEvents: 'none' }}>...</button>
-            <button onClick={() => {setPage(Math.floor(total / limit))}}>{Math.floor(total / limit)}</button>
-            <button onClick={() => setPage(page + 1)} disabled={Math.floor(total / limit) <= page} style={{ opacity: Math.floor(total / limit) <= page ? '.3' : '1' }}>→</button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1} style={{ opacity: page === 1 ? '.3' : '1' }}>←</button>
+            {page === pagesCount && <button onClick={() => setPage(page - 3)}>{page - 3}</button>}
+            {page > 2 && <button onClick={() => setPage(page - 2)}>{page - 2}</button>}
+            {page > 1 && <button onClick={() => setPage(page - 1)}>{page - 1}</button>}
+            <button className={s.active} >{page}</button>
+            {page < pagesCount && <button onClick={() => setPage(page + 1)}>{page + 1}</button>}
+            {!(page > 2) && <button onClick={() => setPage(page + 2)}>{page + 2}</button>}
+            {!(page > 1) && <button onClick={() => setPage(page + 3)}>{page + 3}</button>}
+
+            {page < 9 && <>
+                <button style={{ pointerEvents: 'none' }}>...</button>
+                <button onClick={() => { setPage(pagesCount) }}>{pagesCount}</button>
+            </>}
+            <button onClick={() => setPage(page + 1)} disabled={pagesCount <= page} style={{ opacity: pagesCount <= page ? '.3' : '1' }}>→</button>
         </div>
     );
 };

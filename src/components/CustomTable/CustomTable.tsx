@@ -6,24 +6,25 @@ import search from '../../assets/icons/search-circle.png';
 import { TableHeader } from "./TableHeader";
 import { Loader } from "../Loader/Loader";
 import { Row } from "./Row";
-import { useInputDebaunce } from "../../hooks/useDebaunce";
+import { useInputDebaunce } from "../../hooks/useInputDebaunce";
 import { Pages } from "./Pages";
 
 export const CustomTable: React.FC = () => {
     const dispatch = useAppDispatch();
     const { users, isLoading } = useAppSelector(state => state.usersSlice);
-    const [page, setPage] = useState<number>(0);
+    const [page, setPage] = useState<number>(1);
     const limit: number = 8;
 
     const searchUsers = async (value: string) => {
-        await dispatch(searchUsersThunk(value))
+        if(!value) return dispatch(getUsersThunk({ limit: 8, skip: page * limit }));
+        await dispatch(searchUsersThunk(value));
     }
 
     const input = useInputDebaunce('', 0.5, searchUsers);
 
     useEffect(() => {
         const init = async () => {
-            await dispatch(getUsersThunk({ limit: 8, skip: page * limit }));
+            await dispatch(getUsersThunk({ limit: 8, skip: (page - 1) * limit }));
         }
         init();
     }, [page]);

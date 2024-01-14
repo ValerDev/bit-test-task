@@ -19,6 +19,7 @@ export const Row: React.FC<Props> = ({
     token }) => {
 
     return (
+        <>
         <div className={s.row}>
             <p>{email}</p>
             <p>{name}</p>
@@ -30,5 +31,7 @@ export const Row: React.FC<Props> = ({
                 <img src={trash} alt="trash" />
             </div>
         </div>
+            <div className="line" />
+        </>
     );
 };
