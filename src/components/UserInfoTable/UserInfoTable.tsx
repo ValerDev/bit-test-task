@@ -5,8 +5,6 @@ import { useAppSelector } from "../../hooks/storeHooks";
 import { Row } from "./Row";
 import { Loader } from "../Loader/Loader";
 
-
-
 export const UserInfoTable: React.FC = () => {
     const { selectedUser } = useAppSelector(state => state.usersSlice);
 
